@@ -1,6 +1,6 @@
 # React Minesweeper
 
-This is a Minesweeper game I'm build following this tutorial: [Minesweeper in TypeScript and React](https://medium.com/@tdelev/minesweeper-in-typescript-and-react-f5f8a5d57383).
+This is a Minesweeper game I'm build following this tutorial by [@tdelev](https://github.com/tdelev): [Minesweeper in TypeScript and React](https://medium.com/@tdelev/minesweeper-in-typescript-and-react-f5f8a5d57383).
 
 ## Instructions
 - Clone or download the repository
