@@ -1,4 +1,5 @@
 import React from 'react';
+import { Mine } from '../domain';
 
 export const MineSquare = (props: MineProps) => {
   const { field, index, onLeftClick } = props;

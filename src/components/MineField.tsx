@@ -1,4 +1,5 @@
 import React from 'react';
+import { Game, Mine } from '../domain';
 import MineSquare from './MineSquare';
 
 export const MineField = (props: MineFieldProps) => {
