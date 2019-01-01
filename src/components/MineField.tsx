@@ -1,6 +1,6 @@
 import React from 'react';
 import { Game, Mine } from '../domain';
-import MineSquare from './MineSquare';
+import { MineSquare } from './MineSquare';
 
 export const MineField = (props: MineFieldProps) => {
   const { game, onLeftClick } = props;
@@ -15,7 +15,7 @@ export const MineField = (props: MineFieldProps) => {
             field={field}
             onLeftClick={field => onLeftClick(field)}
           />
-        ));
+        ))
       }
     </div>
   ));

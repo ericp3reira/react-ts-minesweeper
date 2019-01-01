@@ -14,7 +14,7 @@ export class Mine {
 
 export class Game {
   constructor(
-    public state: Array<Array<Mine>>>,
+    public state: Array<Array<Mine>>,
     public totalBombs = 0,
     public exploded = false
   ) {}
