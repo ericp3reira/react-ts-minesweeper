@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import { MineField } from './components/MineField';
+import { Timer } from './components/Timer';
 import { Mine, Game } from './domain';
-
-import { secondsToString } from './utils/time';
 
 class App extends Component {
   render() {
@@ -14,11 +13,11 @@ class App extends Component {
       console.log('this');
     }
 
-    const seconds = 7;
-    console.log(secondsToString(seconds));
+    const seconds = 127;
 
     return (
       <div className="App">
+        <Timer elapsedSeconds={seconds} />
         <MineField game={game} onLeftClick={onLeftClick} />
       </div>
     );
