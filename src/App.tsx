@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { MineField } from './components/MineField';
 import { Timer } from './components/Timer';
-import { Mine, Game } from './domain';
+import { Mine } from './domain';
 
 import { newGame } from './newGame';
 
