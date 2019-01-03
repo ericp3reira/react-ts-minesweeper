@@ -1,5 +1,6 @@
 import React from 'react';
 import { Mine } from '../domain';
+import './MineSquare.css';
 
 export const MineSquare = (props: MineProps) => {
   const { field, index, onLeftClick } = props;
