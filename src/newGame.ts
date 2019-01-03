@@ -11,12 +11,10 @@ export const newGame = (rows: number, columns: number): Game => {
 
   const state = Array(rows).fill(null).map((r, i: number) => {
     return Array(columns).fill(null).map((c, j: number) => {
-      const isMine = Math.random() < BOMBS_PROB;
-      totalMines += isMine ? 1 : 0;
       return new Mine(
         {x: i, y: j},
         false,
-        (isMine ? -1 : 0),
+        0,
         false
       );
     });
