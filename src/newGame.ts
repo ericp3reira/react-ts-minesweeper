@@ -22,5 +22,15 @@ export const newGame = (rows: number, columns: number): Game => {
     });
   });
 
+  while (totalMines < estimatedMines) {
+    const randX = Math.floor(Math.random() * rows);
+    const randY = Math.floor(Math.random() * columns);
+
+    if (state[randX][randY].bombs !== -1) {
+      totalMines++;
+      state[randX][randY].bombs = -1;
+    }
+  }
+
   return new Game(state, totalMines);
 }
