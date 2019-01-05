@@ -5,6 +5,7 @@ import { Timer } from './components/Timer';
 import { Mine } from './domain';
 
 import { newGame } from './newGame';
+import { update } from './update';
 
 class App extends Component {
   render() {

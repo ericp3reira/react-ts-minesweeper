@@ -13,7 +13,7 @@ export const MineField = (props: MineFieldProps) => {
             key={`${i}-${j}`}
             index={j + row.length}
             field={field}
-            onLeftClick={field => onLeftClick(field)}
+            onLeftClick={onLeftClick}
           />
         ))
       }
