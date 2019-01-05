@@ -1,4 +1,5 @@
 import { Game, Mine } from './domain';
+import { traverseNeighbours, isMine } from './newGame';
 
 export const update = (
   game: Game,
@@ -11,4 +12,16 @@ export const update = (
       });
   });
   return new Game(updated, game.totalBombs, game.exploded || exploded);
+}
+
+export const updateZeros = (fields: Array<Array<Mine>>, start: Mine) => {
+  traverseNeighbours(fields, start, (field => {
+      if (!field.isOpened && !isMine(field)) {
+          field.isOpened = true;
+          if (field.bombs == 0) {
+              updateZeros(fields, field);
+          }
+      }
+      return field;
+  }));
 }

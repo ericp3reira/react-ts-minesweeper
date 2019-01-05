@@ -46,3 +46,7 @@ export const traverseNeighbours = (
     .filter((point: Point) => inBounds(point))
     .map((point: Point) => onField(fields[point.x][point.y]));
 }
+
+export const isMine = (field: Mine): boolean => {
+  return field.bombs === -1;
+}
