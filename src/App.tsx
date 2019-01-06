@@ -4,8 +4,7 @@ import { MineField } from './components/MineField';
 import { Timer } from './components/Timer';
 import { Mine } from './domain';
 
-import { newGame } from './newGame';
-import { update } from './update';
+import { newGame } from './game';
 
 class App extends Component {
   render() {

@@ -1,5 +1,5 @@
 import { Game, Mine } from './domain';
-import { traverseNeighbours, isMine } from './newGame';
+import { traverseNeighbours, isMine } from './game';
 
 export const update = (
   game: Game,

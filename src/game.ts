@@ -1,4 +1,5 @@
 import { Game, Mine, Point } from './domain';
+import { update } from './update';
 
 const BOMBS_PROB = 0.15;
 
@@ -49,4 +50,15 @@ export const traverseNeighbours = (
 
 export const isMine = (field: Mine): boolean => {
   return field.bombs === -1;
+}
+
+export const endGame = (game: Game): Game => {
+  return update(game, (field) => {
+    return new Mine(
+      field.position,
+      (!isMine(field) ? field.isOpened : true),
+      field.bombs,
+      field.isFlagged
+    );
+  }, true);
 }
