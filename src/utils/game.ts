@@ -1,4 +1,4 @@
-import { Game, Mine, Point } from './domain';
+import { Game, Mine, Point } from '../domain';
 import { update } from './update';
 
 const BOMBS_PROB = 0.15;

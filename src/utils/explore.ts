@@ -1,4 +1,4 @@
-import { Game, Mine } from './domain';
+import { Game, Mine } from '../domain';
 import { update, updateZeros } from './update';
 import { traverseNeighbours, isMine, endGame } from './game';
 
