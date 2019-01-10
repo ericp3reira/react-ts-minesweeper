@@ -1,5 +1,6 @@
 import { Game, Mine, Point } from '../domain';
 import { update } from './update';
+import { number } from 'prop-types';
 
 const BOMBS_PROB = 0.15;
 
@@ -64,7 +65,7 @@ export const endGame = (game: Game): Game => {
 }
 
 export const checkCompleted = (game: Game): boolean => {
-  const and = (a: boolean, b: boolean) => a && b;
+  const and = (a: boolean, b: boolean): boolean => a && b;
   return game.state.map(row => {
     return row.map(field => {
       return isMineCovered(field);
@@ -74,4 +75,13 @@ export const checkCompleted = (game: Game): boolean => {
 
 const isMineCovered = (field: Mine) => {
   return isMine(field) ? field.isFlagged : field.isOpened;
+}
+
+export const countFlag = (game: Game): number => {
+  const add = (a: number, b: number): number => a + b;
+  return game.state.map(row => {
+    return row.map(field => {
+      return field.isFlagged ? 1 : 0;
+    }).reduce(add, 0);
+  }).reduce(add, 0);
 }
