@@ -62,3 +62,16 @@ export const endGame = (game: Game): Game => {
     );
   }, true);
 }
+
+export const checkCompleted = (game: Game): boolean => {
+  const and = (a: boolean, b: boolean) => a && b;
+  return game.state.map(row => {
+    return row.map(field => {
+      return isMineCovered(field);
+    }).reduce(and);
+  }).reduce(and);
+}
+
+export const isMineCovered = (field: Mine) => {
+  return isMine(field) ? field.isFlagged : field.isOpened;
+}
