@@ -72,6 +72,6 @@ export const checkCompleted = (game: Game): boolean => {
   }).reduce(and);
 }
 
-export const isMineCovered = (field: Mine) => {
+const isMineCovered = (field: Mine) => {
   return isMine(field) ? field.isFlagged : field.isOpened;
 }
