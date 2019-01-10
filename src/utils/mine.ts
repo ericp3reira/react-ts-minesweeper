@@ -1,8 +1,9 @@
 import { Game, Mine } from '../domain';
 import { isMine, endGame } from './game';
 import { update, updateZeros } from './update';
+import { exploreOpenedField } from './explore';
 
-function openMine(game: Game, field: Mine): Game {
+export const openMine = (game: Game, field: Mine): Game => {
   if (field.isFlagged) return game;
   
   if (!field.isFlagged && isMine(field)) return endGame(game);
@@ -22,3 +23,17 @@ function openMine(game: Game, field: Mine): Game {
   }
   return result;
 }
+
+export const markMine = (game: Game, opened: Mine): Game => {
+  if (opened.isOpened && !opened.isFlagged)
+    return exploreOpenedField(game, opened);
+  return update(game, (field: Mine) => {
+    return new Mine(
+      field.position,
+      field == opened ? false : field.isOpened,
+      field.bombs,
+      field == opened ? !field.isFlagged : field.isFlagged
+    );
+  });
+};
+
