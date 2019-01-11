@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: space-around;
   color: white;
+  height: 60px;
 }
 
 .display {
@@ -25,6 +26,23 @@
 .display > .icon {
   margin: 0 auto;
   animation: pulsing-icon infinite 1s linear;
+}
+
+.time-display {
+  height: 60px;
+}
+
+.newgame-menu {
+  display: none;
+  flex-direction: column;
+  position: relative;
+  top: 60px;
+  padding: 25px;
+  background-color: #282c34;
+}
+
+.newgame-menu.active {
+  display: flex;
 }
 
 @keyframes pulsing-icon {

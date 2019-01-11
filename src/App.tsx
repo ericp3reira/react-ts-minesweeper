@@ -16,7 +16,8 @@ class App extends Component<AppProps> {
     game: newGame(this.props.rows, this.props.columns),
     completed: false,
     flagged: 0,
-    elapsedSeconds: 0
+    elapsedSeconds: 0,
+    newgamemenu: false
   };
 
   isControlKey(code: string) {
@@ -34,7 +35,24 @@ class App extends Component<AppProps> {
     }
   }
 
-  render() {
+  startGame(rows: number, columns: number) {
+    this.setState({
+      rows: rows,
+      columns: columns,
+      game: newGame(rows, columns),
+      completed: false,
+      flagged: 0,
+      elapsedSeconds: 0
+    });
+  }
+
+  toggleNewGameMenu() {
+    this.setState({
+      newgamemenu: !this.state.newgamemenu
+    });
+  }
+
+  public render() {
     return (
       <div className="App">
         <header className="App-header">
@@ -42,8 +60,13 @@ class App extends Component<AppProps> {
             <span className="icon">💣</span>
             <span className="counter">8</span>
           </div>
-          <div className="time-display">
-            {/* <Timer elapsedSeconds={seconds} /> */}
+          <div className="time-display" onClick={() => this.toggleNewGameMenu()}>
+            <Timer elapsedSeconds={0} />
+            <div className={`newgame-menu ${this.state.newgamemenu ? 'active' : null}`}>
+              <button onClick={(e) => this.startGame(8, 8)}>Easy</button>
+              <button onClick={(e) => this.startGame(12, 12)}>Medium</button>
+              <button onClick={(e) => this.startGame(16, 16)}>Hard</button>
+            </div>
           </div>
           <div className="display">
             <span className="counter">8</span>
