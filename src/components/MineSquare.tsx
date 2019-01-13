@@ -16,7 +16,6 @@ export const MineSquare = (props: MineProps) => {
 };
 
 const renderField = (field: Mine) => {
-  console.log('renderField');
   if (field.isOpened && field.bombs > 0) {
     return <span className={`bombs-${field.bombs}`}>{field.bombs}</span>;
   }

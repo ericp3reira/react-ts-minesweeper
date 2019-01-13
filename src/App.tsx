@@ -3,8 +3,8 @@ import './App.css';
 import { MineField } from './components/MineField';
 import { Timer } from './components/Timer';
 import { Mine, Game } from './domain';
-
-import { newGame } from './utils/game';
+import { newGame, checkCompleted, countFlag } from './utils/game';
+import { openMine, markMine } from './utils/mine';
 
 class App extends Component<AppProps> {
   controlDown = false;
@@ -65,6 +65,25 @@ class App extends Component<AppProps> {
     }, 1000);
   }
 
+  updateState(field: Mine, updateFn: (game: Game, field: Mine) => Game) {
+    this.setState((prevState: any) => {
+      const updatedGame = updateFn(prevState.game, field);
+      const completed = checkCompleted(updatedGame);
+      if (completed || updatedGame.exploded) {
+          clearInterval(this.timer);
+      }
+      return {
+          game: updatedGame,
+          completed: completed,
+          flagged: countFlag(updatedGame)
+      };
+    });
+  }
+
+  onLeftClick(field: Mine) {
+    this.updateState(field, this.controlDown ? openMine : markMine);
+  }
+
   public render() {
     return (
       <div className="App">
@@ -87,7 +106,7 @@ class App extends Component<AppProps> {
           </div>
         </header>
         <main className="App-grid">
-          <MineField game={this.state.game} onLeftClick={() => console.log('this')} />
+          <MineField game={this.state.game} onLeftClick={(field: Mine) => this.onLeftClick(field)} />
         </main>
         <footer>
           Built with <span className="icon">☕️</span> by @ericp3reira
