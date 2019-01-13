@@ -8,7 +8,7 @@ import { newGame } from './utils/game';
 
 class App extends Component<AppProps> {
   controlDown = false;
-  // startTime: Date;
+  startTime: Date = new Date();
   
   state = {
     rows: this.props.rows,
@@ -36,6 +36,8 @@ class App extends Component<AppProps> {
   }
 
   startGame(rows: number, columns: number) {
+    clearInterval(this.timer);
+    this.startTimer();
     this.setState({
       rows: rows,
       columns: columns,
@@ -52,16 +54,27 @@ class App extends Component<AppProps> {
     });
   }
 
+  startTimer() {
+    this.startTime = new Date();
+    this.timer = setInterval(() => {
+      const now = new Date();
+      const elapsedMs = now.getTime() - this.startTime.getTime();
+      this.setState({
+        elapsedSeconds: Math.floor(elapsedMs/1000)
+      });
+    }, 1000);
+  }
+
   public render() {
     return (
       <div className="App">
         <header className="App-header">
           <div className="display">
             <span className="icon">💣</span>
-            <span className="counter">8</span>
+            <span className="counter">0</span>
           </div>
           <div className="time-display" onClick={() => this.toggleNewGameMenu()}>
-            <Timer elapsedSeconds={0} />
+            <Timer elapsedSeconds={this.state.elapsedSeconds} />
             <div className={`newgame-menu ${this.state.newgamemenu ? 'active' : null}`}>
               <button onClick={(e) => this.startGame(8, 8)}>Easy</button>
               <button onClick={(e) => this.startGame(12, 12)}>Medium</button>
@@ -69,7 +82,7 @@ class App extends Component<AppProps> {
             </div>
           </div>
           <div className="display">
-            <span className="counter">8</span>
+            <span className="counter">{this.state.flagged}</span>
             <span className="icon">🚩</span>
           </div>
         </header>
